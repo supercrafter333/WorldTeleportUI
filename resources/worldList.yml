@@ -1,0 +1,10 @@
+# List of worlds for WorldTeleportUI
+
+# Here you can set the worlds
+world:
+  worldName: "world"
+  uiText: "§eWorld-1"
+
+#######################################################################################################
+# WorldTeleportUI, licensed under the Apache License 2.0! Made by supercrafter333 with love in germany!
+#######################################################################################################

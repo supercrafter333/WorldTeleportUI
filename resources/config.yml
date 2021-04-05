@@ -1,0 +1,12 @@
+# Here you can configurate WorldTeleportUI
+# Messages
+msg-successfully-teleported: "§aYou was successfully teleported!"
+msg-teleport-not-save: "§cThe teleport to this is not save! §8Teleport cancelled!"
+msg-Only-In-Game: "Only In-Game!"
+# UIs
+UI-Title: "§l§eWorld§7Teleport§bUI"
+UI-Content: "Select a world, that you will teleport to it."
+
+#######################################################################################################
+# WorldTeleportUI, licensed under the Apache License 2.0! Made by supercrafter333 with love in germany!
+#######################################################################################################
