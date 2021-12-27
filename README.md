@@ -11,11 +11,11 @@
 
 ### Bugs - none
 You've found a Bug?
-- Go to [Issues](https://github.com/supercrafter333/theSpawn/issues)
-- Click on [New Issue](https://github.com/supercrafter333/theSpawn/issues/new/choose)
+- Go to [Issues](https://github.com/supercrafter333/WorldTeleportUI/issues)
+- Click on [New Issue](https://github.com/supercrafter333/WorldTeleportUI/issues/new/choose)
 - Write your bug with all Informations that you have down
 - Send Issue
-- Wait, I where answer you
+- Wait, until I answer you
 
 ### License:
 This Plugin has the [Apache License 2.0](/LICENSE)! Plugin by supercrafter333!
