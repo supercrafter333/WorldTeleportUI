@@ -4,9 +4,9 @@ namespace supercrafter333\WorldTeleportUI\Commands;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\command\PluginIdentifiableCommand;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\Plugin;
+use pocketmine\plugin\PluginOwned;
 use supercrafter333\WorldTeleportUI\UIs;
 use supercrafter333\WorldTeleportUI\WorldTeleportUI;
 
@@ -14,7 +14,7 @@ use supercrafter333\WorldTeleportUI\WorldTeleportUI;
  * Class wtpCommand
  * @package supercrafter333\WorldTeleportUI\Commands
  */
-class wtpCommand extends Command implements PluginIdentifiableCommand
+class wtpCommand extends Command implements PluginOwned
 {
 
     /**
@@ -53,7 +53,7 @@ class wtpCommand extends Command implements PluginIdentifiableCommand
     /**
      * @return Plugin
      */
-    public function getPlugin(): Plugin
+    public function getOwningPlugin(): Plugin
     {
         return $this->plugin;
     }

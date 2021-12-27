@@ -1,4 +1,4 @@
-# WorldTeleportUI - V1.0.0
+# WorldTeleportUI - V1.0.1
 
 **With this plugin, players can teleport to a world per UI!**
 

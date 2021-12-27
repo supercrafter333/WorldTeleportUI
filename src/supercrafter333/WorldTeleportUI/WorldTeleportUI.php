@@ -2,8 +2,9 @@
 
 namespace supercrafter333\WorldTeleportUI;
 
-use pocketmine\level\Level;
-use pocketmine\Player;
+use pocketmine\utils\SingletonTrait;
+use pocketmine\world\World;
+use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use supercrafter333\WorldTeleportUI\Commands\wtpCommand;
@@ -14,39 +15,32 @@ use supercrafter333\WorldTeleportUI\Commands\wtpCommand;
  */
 class WorldTeleportUI extends PluginBase
 {
+    use SingletonTrait;
 
     /**
      * @var
      */
-    protected static $instance;
+    protected Config $worldCfg;
     /**
      * @var
      */
-    protected $worldCfg;
-    /**
-     * @var
-     */
-    protected $config;
-
-    /**
-     *
-     */
-    public function onEnable()
+    protected Config $config;
+    
+    protected function onLoad(): void
     {
-        self::$instance = $this;
+        self::setInstance($this);
+    }
+
+    /**
+     * onEnable function
+     */
+    public function onEnable():void
+    {
         $this->saveResource("worldList.yml");
         $this->saveResource("config.yml");
         $this->worldCfg = new Config($this->getDataFolder() . "worldList.yml", Config::YAML);
         $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML);
         $this->getServer()->getCommandMap()->register("WorldTeleportUI", new wtpCommand("wtp"));
-    }
-
-    /**
-     * @return static
-     */
-    public static function getInstance(): self
-    {
-        return self::$instance;
     }
 
     /**
@@ -78,11 +72,11 @@ class WorldTeleportUI extends PluginBase
      * @param $worldName
      * @return mixed|null
      */
-    public function getRealWorldName($worldName)
+    public function getRealWorldName($worldName): mixed
     {
         if ($this->isWorldSet($worldName)) {
             $world = $this->getWorldCfg()->get($worldName)["worldName"];
-            if ($this->getServer()->isLevelGenerated($worldName)) {
+            if ($this->getServer()->getWorldManager()->isWorldGenerated($worldName)) {
                 return $world;
             }
         }
@@ -103,17 +97,17 @@ class WorldTeleportUI extends PluginBase
 
     /**
      * @param $worldName
-     * @return Level|null
+     * @return World|null
      */
-    public function getWorld($worldName)
+    public function getWorld($worldName): ?World
     {
         if ($this->getRealWorldName($worldName) !== null) {
-            if ($this->getServer()->isLevelLoaded($worldName)) {
-                $world = $this->getServer()->getLevelByName($worldName);
+            if ($this->getServer()->getWorldManager()->isWorldLoaded($worldName)) {
+                $world = $this->getServer()->getWorldManager()->getWorldByName($worldName);
                 return $world;
             } else {
-                $this->getServer()->loadLevel($worldName);
-                $world = $this->getServer()->getLevelByName($worldName);
+                $this->getServer()->getWorldManager()->loadWorld($worldName);
+                $world = $this->getServer()->getWorldManager()->getWorldByName($worldName);
                 return $world;
             }
         }
@@ -122,9 +116,9 @@ class WorldTeleportUI extends PluginBase
 
     /**
      * @param Player $player
-     * @param Level $world
+     * @param World $world
      */
-    public function teleportToWorld(Player $player, Level $world)
+    public function teleportToWorld(Player $player, World $world)
     {
         $player->teleport($world->getSafeSpawn());
     }

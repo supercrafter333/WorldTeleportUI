@@ -2,8 +2,8 @@
 
 namespace supercrafter333\WorldTeleportUI;
 
-use jojoe77777\FormAPI\SimpleForm;
-use pocketmine\Player;
+use pocketmine\player\Player;
+use Vecnavium\FormsUI\SimpleForm;
 
 /**
  * Class UIs
@@ -30,13 +30,14 @@ class UIs
      * @param Player $player
      * @return SimpleForm|void
      */
-    public function openMenuUI(Player $player) //TODO: use PMFroms [soon]
+    public function openMenuUI(Player $player)
     {
         $pl = $this->plugin;
         foreach ($pl->getWorldCfg()->getAll() as $item => $all) {
             if ($pl->getRealWorldName($item) === null) {
                 $player->sendMessage($pl->getConfig()->get("msg-teleport-not-save"));
-                return $pl->getLogger()->debug("UI-DEBUG: The variable 'worldName' in worldList.yml ist not save! Can't open UI!");
+                $pl->getLogger()->debug("UI-DEBUG: The variable 'worldName' in worldList.yml ist not save! Can't open UI!");
+                return;
             }
         }
         $form = new SimpleForm([$this, 'submitMenuUI']);
