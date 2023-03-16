@@ -1,13 +1,10 @@
-# WorldTeleportUI - V1.0.1
+# WorldTeleportUI - v1.0.2
 
 **With this plugin, players can teleport to a world per UI!**
 
 ### Features
 - Let players teleport to selected Worlds per UI (You can select worlds in `worldList.yml`)
 - Customizable (You can customize this plugin in `config.yml`)
-
-### TODOs
-- [ ] Use PMForms (and no longer FormAPI)
 
 ### Bugs - none
 You've found a Bug?

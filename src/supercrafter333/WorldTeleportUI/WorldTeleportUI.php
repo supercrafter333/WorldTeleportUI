@@ -17,13 +17,8 @@ class WorldTeleportUI extends PluginBase
 {
     use SingletonTrait;
 
-    /**
-     * @var
-     */
     protected Config $worldCfg;
-    /**
-     * @var
-     */
+
     protected Config $config;
     
     protected function onLoad(): void
@@ -60,7 +55,7 @@ class WorldTeleportUI extends PluginBase
     }
 
     /**
-     * @param $worldName
+     * @param string $worldName
      * @return bool
      */
     public function isWorldSet(string $worldName): bool
@@ -70,9 +65,9 @@ class WorldTeleportUI extends PluginBase
 
     /**
      * @param $worldName
-     * @return mixed|null
+     * @return string|null
      */
-    public function getRealWorldName($worldName): mixed
+    public function getRealWorldName($worldName): string|null
     {
         if ($this->isWorldSet($worldName)) {
             $world = $this->getWorldCfg()->get($worldName)["worldName"];
@@ -85,9 +80,9 @@ class WorldTeleportUI extends PluginBase
 
     /**
      * @param $worldName
-     * @return mixed|null
+     * @return string|null
      */
-    public function getUIText($worldName)
+    public function getUIText($worldName): string|null
     {
         if ($this->isWorldSet($worldName)) {
             return $this->getWorldCfg()->get($worldName)["uiText"];
@@ -118,7 +113,7 @@ class WorldTeleportUI extends PluginBase
      * @param Player $player
      * @param World $world
      */
-    public function teleportToWorld(Player $player, World $world)
+    public function teleportToWorld(Player $player, World $world): void
     {
         $player->teleport($world->getSafeSpawn());
     }
